@@ -516,8 +516,18 @@ impl LuaState {
 	}
 
 	#[inline(always)]
+	pub unsafe fn raw_get(&self, index: i32) {
+		(LUA_SHARED.lua_rawget)(*self, index)
+	}
+
+	#[inline(always)]
 	pub unsafe fn raw_geti(&self, t: i32, index: i32) {
 		(LUA_SHARED.lua_rawgeti)(*self, t, index)
+	}
+
+	#[inline(always)]
+	pub unsafe fn raw_set(&self, index: i32) {
+		(LUA_SHARED.lua_rawset)(*self, index)
 	}
 
 	#[inline(always)]
